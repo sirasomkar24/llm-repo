@@ -1,24 +1,21 @@
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv
-
+from langchain_core.messages import SystemMessage, HumanMessage, AIMessage
 load_dotenv()
 
-model = ChatOpenAI() # Selects the default model
+model = ChatOpenAI(model='gpt-4') # Selects the default model
 
-# Keeping the record of the chat history
-
-# Problem with this approach is that as the chat history grows, its difficult for the model to identify which one user's prompt and which one model's output
-# so this problem has been resolved in langchain which keeps record in dict which segregate the user's msg from model's prompt
-
-chat_history = []
+chat_history = [
+    SystemMessage(content='You are a helpful AI assitant')
+]
 
 while True:
     user_input = input("You: ")
-    chat_history.append(user_input)
+    chat_history.append(HumanMessage(content=user_input))
     if user_input.lower() in ["exit", "quit"]:
         break
     result = model.invoke(chat_history)
-    chat_history.append(result.content)
+    chat_history.append(AIMessage(result.content))
     print("AI: ",result.content)
 
 print(chat_history)
