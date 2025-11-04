@@ -13,8 +13,10 @@ class Review(TypedDict):
     key_themes: Annotated[list[str],"write down all the key themes discussed in the review in a list"]
     summary: Annotated[str, "A brief summary of the review"]
     sentiment: Annotated[Literal['pos','neg'],"return sentiment of the review either negative, positive or neutral"]
-    pros: Annotated[Optional[list[str]],"write down all the pros inside a list"]
-    cons: Annotated[Optional[list[str]],"write down all the cons inside a list"]
+    pros: Annotated[Optional[list[str]],"write down all the pros inside a list."]
+    cons: Annotated[Optional[list[str]],"write down all the cons inside a list."]
+
+    name: Annotated[Optional[str], "write the name of the reviewer"]
 
 
 structured_model = model.with_structured_output(Review)
@@ -37,6 +39,6 @@ Bloatware still exists in One UI
 Expensive compared to compititors
 """)
 
-# print(result) # Result is the dictionary
+print(result) # Result is the dictionary
 # print(result['summary'])
-print(result['sentiment'])
+# print(result['sentiment'])
