@@ -1,9 +1,9 @@
 from pydantic import BaseModel
 
 class Student(BaseModel):
-    name: str
+    name: str = 'Omkar' #set a default value
 
-new_student = {'name': 'Omkar'}
+new_student = {}
 
 student = Student(**new_student)
 
