@@ -14,3 +14,5 @@ scikit-learn
 torch
 sentence-transformers
 streamlit
+pydantic
+'pydatic[email]'
