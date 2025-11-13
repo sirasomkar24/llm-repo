@@ -15,4 +15,5 @@ torch
 sentence-transformers
 streamlit
 pydantic
+transformers pillow
 'pydatic[email]'
