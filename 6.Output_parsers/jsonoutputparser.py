@@ -17,7 +17,7 @@ model = ChatHuggingFace(llm=llm)
 parser= JsonOutputParser()
 
 template = PromptTemplate(
-    template="Give me the name, age and city of the fictional person {format_instruction}",
+    template="Give me the name, age and city of the fictional person \n {format_instruction}",
     input_variables=[],
     partial_variables={'format_instruction': parser.get_format_instructions()}
 
