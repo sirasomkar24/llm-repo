@@ -25,4 +25,10 @@ template = PromptTemplate(
 
 prompt = template.format()
 
-print(prompt)
+result = model.invoke(prompt)
+
+final_result = parser.parse(result.content)
+
+print(final_result)
+
+print(type(final_result))
