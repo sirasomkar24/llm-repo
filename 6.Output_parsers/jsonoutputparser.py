@@ -17,8 +17,8 @@ model = ChatHuggingFace(llm=llm)
 parser= JsonOutputParser()
 
 template = PromptTemplate(
-    template="Give me the name, age and city of the fictional person \n {format_instruction}",
-    input_variables=[],
+    template="Give me detailed descriptiona about {topic} \n {format_instruction}",
+    input_variables=['topic'],
     partial_variables={'format_instruction': parser.get_format_instructions()}
 
 )
@@ -27,6 +27,6 @@ template = PromptTemplate(
 # Binding into the chain
 chain = template | model | parser
 
-result = chain.invoke({})  # since the input variables defined in the template are empty list, chain.invoke expects an input, so put here empty dict
+result = chain.invoke({'topic': 'Generative AI'})
 
 print(result)
