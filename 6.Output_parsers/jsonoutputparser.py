@@ -23,12 +23,10 @@ template = PromptTemplate(
 
 )
 
-prompt = template.format()
 
-result = model.invoke(prompt)
+# Binding into the chain
+chain = template | model | parser
 
-final_result = parser.parse(result.content)
+result = chain.invoke({})  # since the input variables defined in the template are empty list, chain.invoke expects an input, so put here empty dict
 
-print(final_result)
-
-print(type(final_result))
+print(result)
