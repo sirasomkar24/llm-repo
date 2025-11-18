@@ -29,10 +29,8 @@ template = PromptTemplate(
     partial_variables={'format_instruction': parser.get_format_instructions()}
 )
 
-prompt = template.invoke({'topic': 'Generative AI'})
+chain = template | model | parser
 
-result = model.invoke(prompt)
+result = chain.invoke({'topic': 'Generative AI'})
 
-final_result = parser.parse(result.content)
-
-print(final_result)
+print(result)
