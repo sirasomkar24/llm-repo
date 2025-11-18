@@ -29,10 +29,7 @@ template = PromptTemplate(
     partial_variables={'format_instruction': parser.get_format_instructions()}
 )
 
-prompt = template.invoke({'ethnicity': 'Indian'})
+chain = template | model | parser
 
-result = model.invoke(prompt)
-
-final_result = parser.parse(result.content)
-
+final_result = chain.invoke({'ethnicity': 'Russian'})
 print(final_result)
